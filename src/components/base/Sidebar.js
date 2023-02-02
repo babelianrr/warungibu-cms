@@ -124,11 +124,11 @@ export default function Sidebar() {
     //   Component: CashIcon,
     //   url: '/payment',
     // },
-    {
-      name: 'PPOB',
-      Component: CreditCardIcon,
-      url: '/ppob',
-    },
+    // {
+    //   name: 'PPOB',
+    //   Component: CreditCardIcon,
+    //   url: '/ppob',
+    // },
   ]
   return (
     <div className="flex flex-col">
