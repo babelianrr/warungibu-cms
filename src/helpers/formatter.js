@@ -2,7 +2,8 @@ import { format } from 'date-fns'
 import { id } from 'date-fns/locale'
 
 export function formatCurrency(num) {
-  return `Rp. ${num.toLocaleString()}`
+  // return `Rp. ${num.toLocaleString()}`
+  return `${num.toLocaleString()}`
 }
 
 export function formatSentenceCase(camelCase) {
