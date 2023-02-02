@@ -49,6 +49,7 @@ const orderType = {
 }
 
 export default function OrderPage() {
+  const authUser = JSON.parse(localStorage.user)
   const [totalPage, setTotalPage] = useState(1)
   const [search, setSearch] = useState('')
   const [client, setClient] = useState('')
@@ -167,10 +168,10 @@ export default function OrderPage() {
       // (order.status === 'ORDERED' && order.payment.method === 'BANK_TRANSFER')
       (order.status === 'COMPLETED' && order.payment.status !== 'SUCCESS')
     ) {
-      if (AUTH.role_status === SUPER_USER) {
+      if (authUser.role_status === 'SUPER_ADMIN') {
         action.push(
           <div key={1} className="text-dnr-dark-orange hover:underline cursor-pointer" onClick={() => setOpen(true)}>
-            Konfirmasi Pembayaran 
+            Konfirmasi Pembayaran
           </div>
         )
       }

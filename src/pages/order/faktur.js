@@ -112,9 +112,9 @@ export default function Detail() {
                             scope="col"
                             className="bg-wi-blue border border-black px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider"
                           >
-                            Harga Produk
+                            Harga Satuan
                           </th>
-                          <th
+                          {/* <th
                             scope="col"
                             className="bg-wi-blue border border-black px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider"
                           >
@@ -125,7 +125,7 @@ export default function Detail() {
                             className="bg-wi-blue border border-black px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider"
                           >
                             Harga Diskon
-                          </th>
+                          </th> */}
                           <th
                             scope="col"
                             className="bg-wi-blue border border-black px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider"
@@ -144,14 +144,12 @@ export default function Detail() {
                             <td className="px-6 py-4 border border-black whitespace-nowrap text-sm text-gray-900">
                               {currencyConverter(cart.unit_price)}
                             </td>
-                            <td className="px-6 py-4 border border-black whitespace-nowrap text-sm text-gray-900">
+                            {/* <td className="px-6 py-4 border border-black whitespace-nowrap text-sm text-gray-900">
                               {cart.discount_percentage ? `${cart.discount_percentage}%` : '-'}
-                              {/* {generateDiscount(cart)} */}
                             </td>
                             <td className="px-6 py-4 border border-black whitespace-nowrap text-sm text-gray-900">
-                              {/* {currencyConverter(generatePriceFromCart(cart))} */}
                               {cart?.discount_percentage ? currencyConverter((cart.unit_price * cart?.discount_percentage/100)) : '-'}
-                            </td>
+                            </td> */}
                             <td className="px-6 py-4 border border-black whitespace-nowrap text-sm text-gray-900">
                               {currencyConverter(cart.final_unit_price)}
                             </td>
@@ -159,7 +157,7 @@ export default function Detail() {
                         ))}
                         <tr>
                           <td
-                            colSpan={5}
+                            colSpan={3}
                             className="px-6 py-4 border border-black whitespace-nowrap text-sm font-bold text-gray-700 text-right"
                           >
                             Total
@@ -171,11 +169,11 @@ export default function Detail() {
                       </tbody>
                       <tfoot className="bg-gray-50">
                         <tr className={'bg-white'} key={1}>
-                          <td colSpan={6} className="px-6 py-4 whitespace-nowrap">
+                          <td colSpan={4} className="px-6 py-4 whitespace-nowrap">
                           </td>
                         </tr>
                         <tr className={'bg-white'} key='total'>
-                          <td colSpan={5} className="px-6 py-4 whitespace-nowrap text-sm text-right font-bold text-gray-900 border border-black">
+                          <td colSpan={3} className="px-6 py-4 whitespace-nowrap text-sm text-right font-bold text-gray-900 border border-black">
                             Biaya Layanan
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900 border border-black">
@@ -183,7 +181,7 @@ export default function Detail() {
                           </td>
                         </tr>
                         <tr className={'bg-white'} key='total'>
-                          <td colSpan={5} className="px-6 py-4 whitespace-nowrap text-sm text-right font-bold text-gray-900 border border-black">
+                          <td colSpan={3} className="px-6 py-4 whitespace-nowrap text-sm text-right font-bold text-gray-900 border border-black">
                             Total Pembayaran
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900 border border-black">
