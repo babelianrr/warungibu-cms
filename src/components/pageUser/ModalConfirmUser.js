@@ -13,7 +13,8 @@ export default function ModalConfirmUser({open, setOpen, refetch, email, id}) {
         url: `/admin/users/${id}/verify`,
         method: 'PATCH',
         payload: {
-          role_status: "AUTHORIZED_USER",
+          // role_status: "AUTHORIZED_USER",
+          role_status: "BASIC_USER",
         },
       }),
     {
