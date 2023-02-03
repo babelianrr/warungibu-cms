@@ -11,6 +11,7 @@ import Button from 'components/base/Button'
 import BaseInput from 'components/base/Input'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import currency from 'assets/currency.png'
 
 import {
   fetchDeleteImageProduct,
@@ -239,7 +240,7 @@ function InputDescriptionProduct() {
       <Input label="Unit" name={'unit'} type={'text'} register={register} defaultValue={product.unit} />
       <InputNumber
         label="Harga"
-        prefix="Rp."
+        prefix={<img className="w-5" src={currency} />}
         type={'number'}
         defaultValue={price}
         onChange={setPrice}

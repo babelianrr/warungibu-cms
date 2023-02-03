@@ -8,6 +8,7 @@ import LoadingPage from 'components/base/LoadingPage'
 import Button from 'components/base/Button'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import currency from 'assets/currency.png'
 
 import {createProduct,fetchCategories,fetchUploadProduct} from 'API'
 
@@ -117,9 +118,10 @@ export default function ProductCreate() {
               <Input label="Name" register={() => register('name', {required: true})} errors={errors.name} name={'name'} type={'text'} />
               <Input label="Unit" register={() => register('unit', {required: true})} errors={errors.unit} name={'unit'} type={'text'} />
               {/* <Input label="Price" register={() => register('price', {required: true})} errors={errors.price} name={'price'} type={'text'} /> */}
+              {/* <img className="w-16" src={currency} /> */}
               <InputNumber
                 label="Price"
-                prefix="Rp."
+                prefix={<img className="w-5" src={currency} />}
                 type={'number'}
                 defaultValue={price}
                 onChange={setPrice}
