@@ -2,6 +2,9 @@ import { format } from 'date-fns'
 import { id } from 'date-fns/locale'
 
 export function formatCurrency(num) {
+  if (!num) {
+    return '-'
+  }
   // return `Rp. ${num.toLocaleString()}`
   return `${num.toLocaleString()}`
 }
