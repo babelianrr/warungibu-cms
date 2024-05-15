@@ -1,11 +1,12 @@
-import {useQuery} from 'react-query'
-import {useParams} from 'react-router'
+/* eslint-disable no-unused-vars */
+import { useQuery } from 'react-query'
+import { useParams } from 'react-router'
 
 import currencyConverter from 'helpers/currencyConverter'
-import {formatDate} from 'helpers/formatter'
+import { formatDate } from 'helpers/formatter'
 import dnrLogo from 'assets/logo.png'
 import logo from 'assets/logo-wi.png'
-import {fetchOrderById, fetchDetailUser} from 'API'
+import { fetchOrderById, fetchDetailUser } from 'API'
 
 function generatePriceFromCart(cart) {
   if (cart.discount_percentage) {
@@ -16,15 +17,15 @@ function generatePriceFromCart(cart) {
 }
 
 export default function Detail() {
-  const {orderId} = useParams()
-  const {isLoading, data, isIdle} = useQuery(
+  const { orderId } = useParams()
+  const { isLoading, data, isIdle } = useQuery(
     ['order-detail', orderId],
     () => {
       return fetchOrderById(orderId)
     },
-    {enabled: Boolean(orderId)}
+    { enabled: Boolean(orderId) }
   )
-  const {data: user} = useQuery(['users'], () => fetchDetailUser(data?.user_id), {
+  const { data: user } = useQuery(['users'], () => fetchDetailUser(data?.user_id), {
     enabled: Boolean(data?.user_id),
   })
   // const mainAddress = user?.outlet_addresses?.find((address) => address.isMain) || user?.outlet_addresses[0]
@@ -42,24 +43,24 @@ export default function Detail() {
   }
 
   //let total_diskon = payment.promotion_discount !== null ? payment.promotion_discount : 0;
-/*   let total_diskon = 0;
-
-  function generateDiscount(cart){
-    let diskon = Math.ceil( cart.unit_price - (cart.final_unit_price / cart.quantity) )
-    total_diskon = total_diskon + Math.ceil((cart.unit_price * cart.quantity ) - cart.final_unit_price )
-
-    if(diskon != 0){
-      return currencyConverter(diskon)
-    } else {
-      return "-"
-    }
-  } */
+  /*   let total_diskon = 0;
+  
+    function generateDiscount(cart){
+      let diskon = Math.ceil( cart.unit_price - (cart.final_unit_price / cart.quantity) )
+      total_diskon = total_diskon + Math.ceil((cart.unit_price * cart.quantity ) - cart.final_unit_price )
+  
+      if(diskon != 0){
+        return currencyConverter(diskon)
+      } else {
+        return "-"
+      }
+    } */
 
   return (
     <main className="bg-white min-h-screen ">
       <section className="py-4 px-4 sm:px-0 sm:max-w-screen-lg lg:max-w-screen-lg xl:max-w-screen-xl mx-auto text-gray-900">
         <section className={`w-full sm:w-3/4 mx-auto relative`}>
-          
+
           <div className="mb-2 flex justify-between items-center">
             <img src={logo} width={100} height={40} alt="DNR" />
             <h1 className="text-base font-semibold text-gray-900">Surat Pesanan {data.transaction_number}</h1>
@@ -201,17 +202,17 @@ export default function Detail() {
                 <div className="text-red-500 font-semibold ">- {currencyConverter(data.payment.order_discount)}</div>
               </div>
             ) : null} */}
-{/*             {total_diskon != 0 ? (
+          {/*             {total_diskon != 0 ? (
             <div className="flex justify-between items-center px-6 py-4">
               <span className="text-gray-700 tracking-wide text-sm">Potongan Discount</span>
               <div className="text-red-500 font-semibold">- {currencyConverter(total_diskon)}</div>
-            </div> ) : null } */}             
-            {/* <div className="flex justify-between items-center px-6 py-4">
+            </div> ) : null } */}
+          {/* <div className="flex justify-between items-center px-6 py-4">
               <span className="text-gray-700 tracking-wide text-sm">Biaya Layanan</span>
               <div className="text-gray-900 font-semibold">{state}</div>
               <div className="text-gray-900 font-semibold">{currencyConverter(data.payment.channel_fee)}</div>
             </div> */}
-            {/* <div className="flex justify-between items-center px-6 py-4">
+          {/* <div className="flex justify-between items-center px-6 py-4">
               <span className="text-gray-700 tracking-wide text-sm">Pajak 11%</span>
               <div className="text-gray-900 font-semibold">{currencyConverter(data.payment.tax)}</div>
             </div>
@@ -219,9 +220,9 @@ export default function Detail() {
               <span className="text-gray-700 tracking-wide text-sm">Ongkos Kirim</span>
               <div className="text-gray-900 font-semibold">Rp 0</div>
             </div> */}
-          </section>
+        </section>
 
-          {/* <section className="mb-8">
+        {/* <section className="mb-8">
             <div className="flex justify-end space-x-4 items-center p-4 bg-gray-50 rounded-md">
               <span className="text-gray-700 tracking-wide text-sm">Total Bayar</span>
               <div className="text-gray-900 font-semibold">{state}</div>

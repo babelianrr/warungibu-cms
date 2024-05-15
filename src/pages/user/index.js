@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useRef, useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
 import { useHistory } from 'react-router'

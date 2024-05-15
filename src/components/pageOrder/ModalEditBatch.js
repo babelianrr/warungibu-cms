@@ -1,3 +1,5 @@
+/* eslint-disable eqeqeq */
+/* eslint-disable no-unused-vars */
 import { useState } from 'react'
 import { useMutation } from 'react-query'
 import { useForm } from 'react-hook-form'

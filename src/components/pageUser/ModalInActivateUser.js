@@ -1,18 +1,19 @@
-import {useState} from 'react'
-import {useMutation} from 'react-query'
+/* eslint-disable no-unused-vars */
+import { useState } from 'react'
+import { useMutation } from 'react-query'
 import ConfirmationModal from 'components/base/ConfirmationModal'
 import serverAuthAPI from 'API/serverAuthAPI'
 
-export default function ModalInActivateUser({open, setOpen, refetch, email, id}) {
+export default function ModalInActivateUser({ open, setOpen, refetch, email, id }) {
   const [selectedType, setSelectedType] = useState({})
 
-  const {mutate, isLoading} = useMutation(
+  const { mutate, isLoading } = useMutation(
     'unverified_user',
     (email, type) =>
       serverAuthAPI({
         url: `/admin/users/${id}/verify`,
         method: 'PATCH',
-        payload: { 
+        payload: {
           role_status: "UNVERIFIED_USER",
         },
       }),
@@ -33,7 +34,7 @@ export default function ModalInActivateUser({open, setOpen, refetch, email, id})
       type="information"
       processing={isLoading}
       onConfirm={() => mutate(email, selectedType)}
-      // Body={<CustomerType onChange={(type) => setSelectedType(type)} />}
+    // Body={<CustomerType onChange={(type) => setSelectedType(type)} />}
     />
   )
 }

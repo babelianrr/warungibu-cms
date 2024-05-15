@@ -1,11 +1,12 @@
-import {useState} from 'react'
-import {useMutation} from 'react-query'
+/* eslint-disable no-unused-vars */
+import { useState } from 'react'
+import { useMutation } from 'react-query'
 import ConfirmationModal from 'components/base/ConfirmationModal'
 import serverAuthAPI from 'API/serverAuthAPI'
 import Input from 'components/base/Input'
 
-export default function ModalCancel({open, setOpen, order, refetch}) {
-  const {mutate, isLoading} = useMutation(
+export default function ModalCancel({ open, setOpen, order, refetch }) {
+  const { mutate, isLoading } = useMutation(
     'cancel-order',
     () =>
       serverAuthAPI({

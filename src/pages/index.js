@@ -26,8 +26,8 @@ export { default as OutletTypeDetail } from 'pages/outletType/detail'
 export { default as OutletTypeCreate } from 'pages/outletType/create'
 
 export { default as User } from 'pages/user/index'
-export { default as UserCreate } from 'pages/user/create'
-export { default as UserEdit } from 'pages/user/edit'
+export { default as UserCreatePage } from 'pages/user/create'
+export { default as UserEditPage } from 'pages/user/edit'
 export { default as UserDetail } from 'pages/user/detail'
 
 export { default as Chat } from 'pages/chat/index'

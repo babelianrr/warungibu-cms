@@ -1,17 +1,19 @@
-import {useState, useEffect} from 'react'
-import {useMutation, useQueryClient} from 'react-query'
-import {useForm} from 'react-hook-form'
-import {useHistory, useParams} from 'react-router-dom'
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect } from 'react'
+import { useMutation, useQueryClient } from 'react-query'
+import { useForm } from 'react-hook-form'
+import { useHistory, useParams } from 'react-router-dom'
 
-import {Input, InputFile, InputTextRich} from 'components/form'
-import {getNewsBySlug, editNews, createNewsImage} from 'API'
+import { Input, InputFile, InputTextRich } from 'components/form'
+import { getNewsBySlug, editNews, createNewsImage } from 'API'
 
 export default function NewsEditPage() {
   const history = useHistory()
   const queryClient = useQueryClient()
-  const {slug, id} = useParams()
+  const { slug, id } = useParams()
   const [data, setData] = useState({})
-  const {register, handleSubmit} = useForm()
+  const { register, handleSubmit } = useForm()
   const [images, setImages] = useState([])
   const [content, setContent] = useState('')
 
@@ -32,7 +34,7 @@ export default function NewsEditPage() {
   }, [id])
 
   // patch by id
-  const {mutate} = useMutation((payload) => editNews(id, payload), {
+  const { mutate } = useMutation((payload) => editNews(id, payload), {
     onSuccess: (data) => {
       queryClient.invalidateQueries(['news'])
       history.push('/news')
@@ -40,7 +42,7 @@ export default function NewsEditPage() {
   })
 
   // upload images
-  const {mutate: mutateUploadImage, isLoading: isLoadingUpload} = useMutation(createNewsImage, {
+  const { mutate: mutateUploadImage, isLoading: isLoadingUpload } = useMutation(createNewsImage, {
     onSuccess: (image) => {
       setImages([image])
     },

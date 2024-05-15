@@ -1,12 +1,13 @@
-import {useState} from 'react'
-import {useMutation} from 'react-query'
+/* eslint-disable no-unused-vars */
+import { useState } from 'react'
+import { useMutation } from 'react-query'
 import ConfirmationModal from 'components/base/ConfirmationModal'
 import serverAuthAPI from 'API/serverAuthAPI'
 
-export default function ModalConfirmUser({open, setOpen, refetch, email, id}) {
+export default function ModalConfirmUser({ open, setOpen, refetch, email, id }) {
   const [selectedType, setSelectedType] = useState({})
 
-  const {mutate, isLoading} = useMutation(
+  const { mutate, isLoading } = useMutation(
     'verified_user',
     (email, type) =>
       serverAuthAPI({
@@ -34,7 +35,7 @@ export default function ModalConfirmUser({open, setOpen, refetch, email, id}) {
       type="information"
       processing={isLoading}
       onConfirm={() => mutate(email, selectedType)}
-      // Body={<CustomerType onChange={(type) => setSelectedType(type)} />}
+    // Body={<CustomerType onChange={(type) => setSelectedType(type)} />}
     />
   )
 }

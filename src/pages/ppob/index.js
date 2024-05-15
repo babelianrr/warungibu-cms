@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState } from 'react'
 import { useQuery, useMutation } from 'react-query'
 import debounce from 'lodash.debounce'
@@ -73,14 +74,14 @@ export default function PpobPage() {
   if (isError) return <ErrorPage error={error} />
   return (
     <>
-      <ModalConfirmationSync open={openConfirm} setOpen={setOpenConfirm} title="Sinkronisasi" 
-        message="Apakah anda yakin untuk sinkronisasi data"  
+      <ModalConfirmationSync open={openConfirm} setOpen={setOpenConfirm} title="Sinkronisasi"
+        message="Apakah anda yakin untuk sinkronisasi data"
         refetch={refetch}
       />
       <InfoModal open={open} setOpen={setOpen} title="Berhasil sinkronisasi PPOB" message={message} />
       <div className="px-8 flex justify-start items-center gap-2">
         <h1 className="text-2xl font-semibold text-gray-900">PPOB</h1>
-        <img src={Sync} className="h-5 w-5 mr-2 cursor-pointer" onClick={() => setOpenConfirm(true)} />
+        <img src={Sync} className="h-5 w-5 mr-2 cursor-pointer" onClick={() => setOpenConfirm(true)} alt="" />
       </div>
       <div className="py-4 mx-auto">
         <div className="-my-2 overflow-x-auto py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -89,26 +90,26 @@ export default function PpobPage() {
               <div className="flex space-x-2 text-sm">
                 {productPPOB.map((product, index) => (
                   <>
-                  {
-                    product === 'Token Listrik' ? 
-                      <div
-                        key={index}
-                        className={`${activeFilter === product
+                    {
+                      product === 'Token Listrik' ?
+                        <div
+                          key={index}
+                          className={`${activeFilter === product
                             ? 'bg-wi-dark-wi border-wi-blue text-white '
                             : 'bg-white border-wi-blue text-wi-blue'
-                          } rounded-md  px-2 py-2 my-auto hover:bg-wi-dark-wi hover:text-white transition-colors ease-in-out cursor-pointer border`}
-                        onClick={() => setActiveFilter(product)}
-                      >
-                        <span>{product}</span>
-                      </div>
-                    :
-                      <div
-                        key={index}
-                        className={`bg-gray-400 border border-gray-500 text-white rounded-md  px-2 py-2 my-auto hover:bg-wi-dark-wi hover:text-white transition-colors ease-in-out cursor-pointer border`}
-                      >
-                        <span>{product}</span>
-                      </div>
-                  }
+                            } rounded-md  px-2 py-2 my-auto hover:bg-wi-dark-wi hover:text-white transition-colors ease-in-out cursor-pointer border`}
+                          onClick={() => setActiveFilter(product)}
+                        >
+                          <span>{product}</span>
+                        </div>
+                        :
+                        <div
+                          key={index}
+                          className={`bg-gray-400 border border-gray-500 text-white rounded-md  px-2 py-2 my-auto hover:bg-wi-dark-wi hover:text-white transition-colors ease-in-out cursor-pointer border`}
+                        >
+                          <span>{product}</span>
+                        </div>
+                    }
                   </>
                 ))}
               </div>

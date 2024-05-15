@@ -1,21 +1,22 @@
-import {useState} from 'react'
-import {useQuery} from 'react-query'
-import {useParams} from 'react-router'
+/* eslint-disable no-unused-vars */
+import { useState } from 'react'
+import { useQuery } from 'react-query'
+import { useParams } from 'react-router'
 import format from 'date-fns/format'
 
 import ColoredLabel from 'components/base/ColoredLabel'
-import {ReactTable, LoadingTable} from 'components/table'
+import { ReactTable, LoadingTable } from 'components/table'
 import LoadingPage from 'components/base/LoadingPage'
 import ErrorPage from 'components/base/ErrorPage'
 import ModalConfirmDocument from 'components/pageUser/ModalConfirmDocument'
 
-import {fetchDetailUser} from 'API'
+import { fetchDetailUser } from 'API'
 import useMemoColumnsTable from 'hooks/useMemoColumnsTable'
 
 export default function UserDetail() {
-  const {email} = useParams()
+  const { email } = useParams()
 
-  const {data: user, isLoading, isError, error, refetch} = useQuery(['product', email], () => fetchDetailUser(email))
+  const { data: user, isLoading, isError, error, refetch } = useQuery(['product', email], () => fetchDetailUser(email))
 
   if (isLoading) return <LoadingPage />
   if (isError) return <ErrorPage error={error} />
@@ -121,7 +122,7 @@ export default function UserDetail() {
   )
 }
 
-function OutletAction({doc, refetch}) {
+function OutletAction({ doc, refetch }) {
   const [open, setOpen] = useState(false)
   if (doc.status === 'PENDING' && doc.path) {
     return (
@@ -136,7 +137,7 @@ function OutletAction({doc, refetch}) {
   return null
 }
 
-function TableOutletDocs({docs = [], refetch}) {
+function TableOutletDocs({ docs = [], refetch }) {
   const DocType = {
     PENDING: {
       color: 'yellow',
@@ -184,12 +185,13 @@ function TableOutletDocs({docs = [], refetch}) {
   )
 }
 
-function FilePath({path}) {
+function FilePath({ path }) {
   if (!path) return <span>-</span>
   return (
     <a
       href={`${process.env.REACT_APP_PUBLIC_URL}${path}`}
       target="_blank"
+      rel="noopener noreferrer"
       className="cursor-pointer font-medium text-blue-600 hover:text-blue-500"
     >
       See

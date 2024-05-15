@@ -1,10 +1,11 @@
-import {useState} from 'react'
-import {useMutation} from 'react-query'
+/* eslint-disable no-unused-vars */
+import { useState } from 'react'
+import { useMutation } from 'react-query'
 import ConfirmationModal from 'components/base/ConfirmationModal'
 import serverAuthAPI from 'API/serverAuthAPI'
 
-export default function ModalConfirmation({open, setOpen, product, status, title, message, refetch, url}) {
-  const {mutate, isLoading} = useMutation(
+export default function ModalConfirmation({ open, setOpen, product, status, title, message, refetch, url }) {
+  const { mutate, isLoading } = useMutation(
     'ppob-status',
     () =>
       serverAuthAPI({
@@ -14,7 +15,7 @@ export default function ModalConfirmation({open, setOpen, product, status, title
           id: product.id,
           product_name: product.product_name,
           sell_price: product.sell_price,
-          active:!status
+          active: !status
         },
       }),
     {

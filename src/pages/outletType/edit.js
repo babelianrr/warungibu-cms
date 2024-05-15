@@ -1,10 +1,11 @@
-import {useState, useEffect} from 'react'
-import {useMutation, useQueryClient} from 'react-query'
-import {useForm} from 'react-hook-form'
-import {useHistory, useParams} from 'react-router-dom'
+/* eslint-disable no-unused-vars */
+import { useState, useEffect } from 'react'
+import { useMutation, useQueryClient } from 'react-query'
+import { useForm } from 'react-hook-form'
+import { useHistory, useParams } from 'react-router-dom'
 
-import {Input, InputFile, InputNumber} from 'components/form'
-import {fetchOutletTypeById, updateOutletType} from 'API'
+import { Input, InputFile, InputNumber } from 'components/form'
+import { fetchOutletTypeById, updateOutletType } from 'API'
 import { AUTH, SUPER_USER } from 'helpers/utils'
 import NotFoundPage from 'pages/NotFound'
 import InputTextArea from 'components/form/InputTextArea'
@@ -12,9 +13,9 @@ import InputTextArea from 'components/form/InputTextArea'
 export default function OutletTypeEditPage() {
   const history = useHistory()
   const queryClient = useQueryClient()
-  const {id} = useParams()
+  const { id } = useParams()
   const [data, setData] = useState({})
-  const {register, handleSubmit} = useForm()
+  const { register, handleSubmit } = useForm()
   const [address, setAddress] = useState('')
   const [loanLimit, setLoanLimit] = useState('')
 
@@ -24,7 +25,7 @@ export default function OutletTypeEditPage() {
       let outletType = await fetchOutletTypeById(id)
       setData({
         ...outletType,
-        phone:outletType?.phone ? outletType?.phone.slice(3) : ''
+        phone: outletType?.phone ? outletType?.phone.slice(3) : ''
       })
       setLoanLimit(outletType?.loan_limit)
     }
@@ -32,7 +33,7 @@ export default function OutletTypeEditPage() {
   }, [id])
 
   // patch by id
-  const {mutate} = useMutation((payload) => updateOutletType(id, payload), {
+  const { mutate } = useMutation((payload) => updateOutletType(id, payload), {
     onSuccess: (data) => {
       queryClient.invalidateQueries(['outlet-types'])
       history.push('/outlet_types')

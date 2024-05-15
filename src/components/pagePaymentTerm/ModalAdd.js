@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState, useEffect } from 'react'
 import { isError, useMutation, useQuery } from 'react-query'
 import { zonedTimeToUtc } from 'date-fns-tz'

@@ -1,22 +1,23 @@
-import {useState} from 'react'
-import {useMutation} from 'react-query'
+/* eslint-disable no-unused-vars */
+import { useState } from 'react'
+import { useMutation } from 'react-query'
 import ConfirmationModal from 'components/base/ConfirmationModal'
 import serverAuthAPI from 'API/serverAuthAPI'
 import { Input } from 'components/base'
 import InputFileNoneImage from 'components/form/InputFileNoneImage'
 
-export default function ModalImportUser({open, setOpen, refetch}) {
+export default function ModalImportUser({ open, setOpen, refetch }) {
   const [selectedFile, setSelectedFile] = useState('')
 
   function FileInput({ onChange }) {
     return (
       <div className="mt-4">
-        <InputFileNoneImage file={selectedFile} setFile={onChange}/>
+        <InputFileNoneImage file={selectedFile} setFile={onChange} />
       </div>
     )
   }
 
-  const {mutate, isLoading} = useMutation(
+  const { mutate, isLoading } = useMutation(
     'import_user',
     (type) =>
       serverAuthAPI({
@@ -45,7 +46,7 @@ export default function ModalImportUser({open, setOpen, refetch}) {
       onConfirm={() => mutate(selectedFile)}
       Body={<FileInput onChange={(file) => {
         setSelectedFile(file.target.files[0].size)
-      } }/>}
+      }} />}
     />
   )
 }

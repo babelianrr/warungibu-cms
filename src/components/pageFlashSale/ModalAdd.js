@@ -1,22 +1,23 @@
-import {useState, useEffect} from 'react'
-import {isError, useMutation, useQuery} from 'react-query'
-import {zonedTimeToUtc} from 'date-fns-tz'
-import {subHours} from 'date-fns'
+/* eslint-disable no-unused-vars */
+import { useState, useEffect } from 'react'
+import { isError, useMutation, useQuery } from 'react-query'
+import { zonedTimeToUtc } from 'date-fns-tz'
+import { subHours } from 'date-fns'
 import debounce from 'lodash.debounce'
-import {SearchIcon} from '@heroicons/react/outline'
+import { SearchIcon } from '@heroicons/react/outline'
 
 import Input from 'components/base/Input'
-import {Button, Modal} from 'components/base'
-import {LoadingTable} from 'components/table'
+import { Button, Modal } from 'components/base'
+import { LoadingTable } from 'components/table'
 
-import {createFlashSale} from 'API'
+import { createFlashSale } from 'API'
 
-export default function ModalAdd({open, setOpen, refetch}) {
+export default function ModalAdd({ open, setOpen, refetch }) {
   const [name, setName] = useState('')
   const [startDate, setStartDate] = useState(null)
   const [endDate, setEndDate] = useState(null)
 
-  const {mutate, isLoading, error, isError} = useMutation('create-flash-sale', (payload) => createFlashSale(payload), {
+  const { mutate, isLoading, error, isError } = useMutation('create-flash-sale', (payload) => createFlashSale(payload), {
     onSuccess() {
       setOpen(false)
       refetch()

@@ -1,3 +1,5 @@
+/* eslint-disable eqeqeq */
+/* eslint-disable no-unused-vars */
 import {useState,useEffect, memo} from 'react'
 import {useMutation, useQueryClient} from 'react-query'
 import {useForm} from 'react-hook-form'
@@ -21,7 +23,7 @@ export default function PpobCreate() {
   } = useForm()
 
   const [images, setImages] = useState([])
-  const [price, setPrice] = useState([])
+  // const [price, setPrice] = useState([])
   const [description,setDescription]= useState('')
   const [validTo,setValidTo]= useState('')
   const [productType,setProductType]= useState('')

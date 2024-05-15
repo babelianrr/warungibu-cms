@@ -1,13 +1,15 @@
-import {useMutation, useQueryClient} from 'react-query'
+/* eslint-disable eqeqeq */
+/* eslint-disable no-unused-vars */
+import { useMutation, useQueryClient } from 'react-query'
 
 import ConfirmationModal from 'components/base/ConfirmationModal'
 
-import {updateProductDetail} from 'API'
+import { updateProductDetail } from 'API'
 
-export default function ModalToggle({id, open, setOpen,status,refetch}) {
+export default function ModalToggle({ id, open, setOpen, status, refetch }) {
   const queryClient = useQueryClient()
 
-  const {mutate, isLoading, error, isError} = useMutation(
+  const { mutate, isLoading, error, isError } = useMutation(
     'change-status-detail',
     (payload) => updateProductDetail(id, payload),
     {
@@ -20,20 +22,20 @@ export default function ModalToggle({id, open, setOpen,status,refetch}) {
 
   function handleMutate() {
 
-      if(status == "ACTIVE"){
-        mutate({
-            status: "INACTIVE"
-          })
-      } else {
-        mutate({
-            status: "ACTIVE"
-          })
-      }
+    if (status == "ACTIVE") {
+      mutate({
+        status: "INACTIVE"
+      })
+    } else {
+      mutate({
+        status: "ACTIVE"
+      })
+    }
 
   }
   return (
     <>
-    {status === "ACTIVE" ? (
+      {status === "ACTIVE" ? (
         <ConfirmationModal
           open={open}
           setOpen={setOpen}
@@ -53,8 +55,8 @@ export default function ModalToggle({id, open, setOpen,status,refetch}) {
           processing={isLoading}
           onConfirm={handleMutate}
         />
-      ) 
-    }
+      )
+      }
     </>
   )
 }

@@ -1,22 +1,23 @@
-import {useState} from 'react'
-import {useQuery} from 'react-query'
-import {useParams} from 'react-router'
+/* eslint-disable no-unused-vars */
+import { useState } from 'react'
+import { useQuery } from 'react-query'
+import { useParams } from 'react-router'
 import format from 'date-fns/format'
 
 import ColoredLabel from 'components/base/ColoredLabel'
-import {ReactTable, LoadingTable} from 'components/table'
+import { ReactTable, LoadingTable } from 'components/table'
 import LoadingPage from 'components/base/LoadingPage'
 import ErrorPage from 'components/base/ErrorPage'
 import ModalConfirmDocument from 'components/pageUser/ModalConfirmDocument'
 
-import {fetchDetailUser, fetchOutletTypeById} from 'API'
+import { fetchDetailUser, fetchOutletTypeById } from 'API'
 import useMemoColumnsTable from 'hooks/useMemoColumnsTable'
 import { formatCurrency } from 'helpers/formatter'
 
 export default function OutletTypeDetailPage() {
-  const {id} = useParams()
+  const { id } = useParams()
 
-  const {data: client, isLoading, isError, error, refetch} = useQuery(['outlet', id], () => fetchOutletTypeById(id))
+  const { data: client, isLoading, isError, error, refetch } = useQuery(['outlet', id], () => fetchOutletTypeById(id))
 
   if (isLoading) return <LoadingPage />
   if (isError) return <ErrorPage error={error} />

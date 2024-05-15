@@ -1,19 +1,20 @@
-import {useState} from 'react'
-import {useQuery} from 'react-query'
-import {useParams, useHistory} from 'react-router'
+/* eslint-disable eqeqeq */
+import { useState } from 'react'
+import { useQuery } from 'react-query'
+import { useParams, useHistory } from 'react-router'
 
-import {Button} from 'components/base'
+import { Button } from 'components/base'
 import LoadingPage from 'components/base/LoadingPage'
 import ErrorPage from 'components/base/ErrorPage'
-import {ReactTable, LoadingTable} from 'components/table'
+import { ReactTable, LoadingTable } from 'components/table'
 import ModalRemovedReview from 'components/pageProduct/ModalRemoveReview'
 
-import {fetchProductById, fetchProductReview} from 'API'
-import {formatCurrency, formatSentenceCase} from 'helpers/formatter'
+import { fetchProductById, fetchProductReview } from 'API'
+import { formatCurrency, formatSentenceCase } from 'helpers/formatter'
 import usePagination from 'hooks/usePagination'
 import useMemoColumnsTable from 'hooks/useMemoColumnsTable'
 
-function ReviewAction({id, refetch}) {
+function ReviewAction({ id, refetch }) {
   const [open, setOpen] = useState(false)
   return (
     <div className="space-y-2">
@@ -26,15 +27,15 @@ function ReviewAction({id, refetch}) {
 }
 
 export default function ProductDetail() {
-  const {id} = useParams()
+  const { id } = useParams()
   const history = useHistory()
   const [totalPage, setTotalPage] = useState(1)
-  const {page, nextPage, prevPage} = usePagination(totalPage)
+  const { page, nextPage, prevPage } = usePagination(totalPage)
   const [data, setData] = useState([])
 
-  const {data: product, isLoading, isError, error} = useQuery(['product', id], () => fetchProductById(id))
+  const { data: product, isLoading, isError, error } = useQuery(['product', id], () => fetchProductById(id))
 
-  const {isLoading: isLoadingReview, refetch} = useQuery(['review', 'id'], () => fetchProductReview(id), {
+  const { isLoading: isLoadingReview, refetch } = useQuery(['review', 'id'], () => fetchProductReview(id), {
     onSuccess: (res) => {
       const reviews = res.reviews.map((review) => ({
         user: review.user.name,
@@ -87,7 +88,7 @@ export default function ProductDetail() {
               <div className="mb-4">
                 <h1 className="text-lg font-semibold text-gray-800 mb-4">{product.name}</h1>
                 <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
-{/*                   <div className="sm:col-span-1">
+                  {/*                   <div className="sm:col-span-1">
                     <dt className="text-sm font-medium text-gray-500">Price (SAP)</dt>
                     <dd className="mt-1 text-sm text-gray-900">{formatCurrency(product.sap_price)}</dd>
                   </div */}
@@ -136,13 +137,13 @@ export default function ProductDetail() {
                 <Description description={product.description} />
               </div>
               {product.promotion_headers.length != 0 ? (
-                  <div className="mb-4">
+                <div className="mb-4">
                   <h3 className="text-sm font-medium text-gray-500 mb-2">Promotion</h3>
                   {product.promotion_headers.map((product) => (
                     <div>{product.name}</div>
                   ))}
                 </div>
-              ): ""}
+              ) : ""}
 
               <Button onClick={() => history.push(`/products/${id}/edit`)}>Edit</Button>
             </div>
@@ -179,13 +180,13 @@ export default function ProductDetail() {
   )
 }
 
-function Description({description}) {
+function Description({ description }) {
   if (!description) return <span>-</span>
 
-  return <p className="text-sm text-gray-600 mb-4" dangerouslySetInnerHTML={{__html: description}}></p>
+  return <p className="text-sm text-gray-600 mb-4" dangerouslySetInnerHTML={{ __html: description }}></p>
 }
 
-function Stocks({product}) {
+function Stocks({ product }) {
   if (product.branches.length === 0) return <span>-</span>
 
   return (
@@ -200,7 +201,7 @@ function Stocks({product}) {
   )
 }
 
-function Categories({categories}) {
+function Categories({ categories }) {
   if (categories.length === 0) return <span>-</span>
 
   return (

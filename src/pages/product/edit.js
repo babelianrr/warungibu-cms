@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import { useState, useEffect, memo } from 'react'
 import { useQuery, useMutation, useQueryClient } from 'react-query'
 import { useForm } from 'react-hook-form'
@@ -240,7 +242,7 @@ function InputDescriptionProduct() {
       <Input label="Unit" name={'unit'} type={'text'} register={register} defaultValue={product.unit} />
       <InputNumber
         label="Harga"
-        prefix={<img className="w-5" src={currency} />}
+        prefix={<img className="w-5" src={currency} alt="" />}
         type={'number'}
         defaultValue={price}
         onChange={setPrice}

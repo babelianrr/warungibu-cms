@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState } from 'react'
 import { useQuery } from 'react-query'
 import debounce from 'lodash.debounce'
@@ -82,9 +83,9 @@ function PaymentTermAction({ payment, refetch }) {
 
       <div className="space-y-2">
         {Users.role_status !== SUPER_USER &&
-        <div className="text-dnr-dark-orange hover:underline cursor-pointer" onClick={() => setOpenEdit(true)}>
-          Edit
-        </div>
+          <div className="text-dnr-dark-orange hover:underline cursor-pointer" onClick={() => setOpenEdit(true)}>
+            Edit
+          </div>
         }
 
         {
@@ -202,20 +203,20 @@ export default function PaymentPage() {
                 </div>
               </form>
             </div>
-            {Users.role_status !== SUPER_USER && 
-            <div>
-              <h5 className="text-gray-900 mb-2"></h5>
-              <Button
-                color="bicart"
-                padding="px-2 py-2 mt-6"
-                className="text-sm"
-                onClick={() => setOpenAddModal(true)}
-              >
-                <div className='flex'>
-                  <PlusIcon className="h-4 w-4 mr-1" /> Payment Term
-                </div>
-              </Button>
-            </div>
+            {Users.role_status !== SUPER_USER &&
+              <div>
+                {/* <h5 className="text-gray-900 mb-2"></h5> */}
+                <Button
+                  color="bicart"
+                  padding="px-2 py-2 mt-6"
+                  className="text-sm"
+                  onClick={() => setOpenAddModal(true)}
+                >
+                  <div className='flex'>
+                    <PlusIcon className="h-4 w-4 mr-1" /> Payment Term
+                  </div>
+                </Button>
+              </div>
             }
           </div>
           <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">

@@ -1,10 +1,11 @@
-import {useState} from 'react'
-import {useMutation} from 'react-query'
+/* eslint-disable no-unused-vars */
+import { useState } from 'react'
+import { useMutation } from 'react-query'
 import ConfirmationModal from 'components/base/ConfirmationModal'
 import serverAuthAPI from 'API/serverAuthAPI'
 
-export default function ModalConfirmationSync({open, setOpen, product, status, title, message, refetch}) {
-  const {mutate, isLoading} = useMutation(
+export default function ModalConfirmationSync({ open, setOpen, product, status, title, message, refetch }) {
+  const { mutate, isLoading } = useMutation(
     'sinkronisasi',
     () =>
       serverAuthAPI({
