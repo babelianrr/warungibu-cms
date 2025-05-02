@@ -1,18 +1,19 @@
-import {useHistory} from 'react-router'
-import {useQuery} from 'react-query'
-import {PlusIcon} from '@heroicons/react/outline'
+/* eslint-disable no-unused-vars */
+import { useHistory } from 'react-router'
+import { useQuery } from 'react-query'
+import { PlusIcon } from '@heroicons/react/outline'
 
-import {ReactTable, LoadingTable, ActionRow} from 'components/table'
-import {LoadingPage, ErrorPage} from 'components/base'
+import { ReactTable, LoadingTable, ActionRow } from 'components/table'
+import { LoadingPage, ErrorPage } from 'components/base'
 import ModalDelete from 'components/pageNews/ModalDelete'
 
-import {getNews} from 'API'
+import { getNews } from 'API'
 import useMemoColumnsTable from 'hooks/useMemoColumnsTable'
 
 export default function NewsPage() {
   const history = useHistory()
 
-  const {data, isLoading, isError, error} = useQuery('news', getNews, {
+  const { data, isLoading, isError, error } = useQuery('news', getNews, {
     select: (news) => {
       return news.map((item) => ({
         title: item.title,

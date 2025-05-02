@@ -1,18 +1,19 @@
-import {useState} from 'react'
-import {useHistory} from 'react-router'
-import {useMutation, useQuery} from 'react-query'
-import {PlusIcon} from '@heroicons/react/outline'
+/* eslint-disable no-unused-vars */
+import { useState } from 'react'
+import { useHistory } from 'react-router'
+import { useMutation, useQuery } from 'react-query'
+import { PlusIcon } from '@heroicons/react/outline'
 
-import {ReactTable, LoadingTable} from 'components/table'
-import {LoadingPage, ErrorPage} from 'components/base'
+import { ReactTable, LoadingTable } from 'components/table'
+import { LoadingPage, ErrorPage } from 'components/base'
 import ConfirmationModal from 'components/base/ConfirmationModal'
 
-import {fetchBanner, deleteBanner} from 'API'
+import { fetchBanner, deleteBanner } from 'API'
 import useMemoColumnsTable from 'hooks/useMemoColumnsTable'
 
-function DeleteBanner({banner, onSuccess, refetch}) {
+function DeleteBanner({ banner, onSuccess, refetch }) {
   const [open, setOpen] = useState(false)
-  const {isLoading, mutate: handleMutate} = useMutation('delete-banner', deleteBanner, {
+  const { isLoading, mutate: handleMutate } = useMutation('delete-banner', deleteBanner, {
     onSuccess() {
       setOpen(false)
       refetch()
@@ -39,12 +40,12 @@ function DeleteBanner({banner, onSuccess, refetch}) {
 export default function Banner() {
   const history = useHistory()
 
-  const {data, isLoading, isError, error, refetch} = useQuery('banner', fetchBanner, {
+  const { data, isLoading, isError, error, refetch } = useQuery('banner', fetchBanner, {
     select(response) {
       return response.map((banner) => ({
         image: (
           <div className="flex-shrink-0 p-2 border border-gray-200 rounded-md">
-            <img className="" src={banner.image} />
+            <img className="" src={banner.image} alt="" />
           </div>
         ),
         action: <DeleteBanner banner={banner} refetch={() => refetch()} />,

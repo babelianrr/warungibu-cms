@@ -1,3 +1,5 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable no-unused-vars */
 import { useQuery } from 'react-query'
 import { useState } from 'react'
 import currencyConverter from 'helpers/currencyConverter'

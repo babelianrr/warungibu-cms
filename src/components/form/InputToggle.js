@@ -1,10 +1,11 @@
-import {useState} from 'react'
-import {Switch} from '@headlessui/react'
-import {XIcon, CheckIcon} from '@heroicons/react/outline'
+/* eslint-disable no-unused-vars */
+import { useState } from 'react'
+import { Switch } from '@headlessui/react'
+import { XIcon, CheckIcon } from '@heroicons/react/outline'
 import Modal from '../base/Modal'
-import {classNames} from 'helpers/classNames'
+import { classNames } from 'helpers/classNames'
 
-export default function InputToggle({value}) {
+export default function InputToggle({ value }) {
   const [status, setStatus] = useState(value)
   const [open, setOpen] = useState(false)
   const handleOnChange = () => {
@@ -45,14 +46,12 @@ export default function InputToggle({value}) {
           <Switch
             checked={status}
             onChange={handleOnChange}
-            className={`${
-              status ? 'bg-dnr-turqoise' : 'bg-gray-200'
-            } relative inline-flex items-center h-6 rounded-full w-11 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-dnr-turqoise`}
+            className={`${status ? 'bg-dnr-turqoise' : 'bg-gray-200'
+              } relative inline-flex items-center h-6 rounded-full w-11 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-dnr-turqoise`}
           >
             <span
-              className={`${
-                status ? 'translate-x-6' : 'translate-x-1'
-              } inline-block w-4 h-4 transform bg-white rounded-full transition-transform`}
+              className={`${status ? 'translate-x-6' : 'translate-x-1'
+                } inline-block w-4 h-4 transform bg-white rounded-full transition-transform`}
             >
               {status ? <CheckIcon className="h-4 w-4 text-gray-400" /> : <XIcon className="h-4 w-4 text-gray-400" />}
             </span>

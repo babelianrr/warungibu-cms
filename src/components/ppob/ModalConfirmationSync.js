@@ -3,16 +3,20 @@ import { useState } from 'react'
 import { useMutation } from 'react-query'
 import ConfirmationModal from 'components/base/ConfirmationModal'
 import serverAuthAPI from 'API/serverAuthAPI'
-import Input from 'components/base/Input'
 
-export default function ModalCancel({ open, setOpen, order, refetch }) {
+export default function ModalConfirmationSync({ open, setOpen, product, status, title, message, refetch }) {
   const { mutate, isLoading } = useMutation(
-    'cancel-order',
+    'sinkronisasi',
     () =>
       serverAuthAPI({
-        url: `/admin/orders/${order.transaction_number}/cancel`,
+        url: `/admin/ppob/sync`,
         method: 'POST',
-        payload: {},
+        // payload: {
+        //   id: product.id,
+        //   product_name: product.product_name,
+        //   sell_price: product.sell_price,
+        //   active:!status
+        // },
       }),
     {
       onSuccess() {
@@ -25,8 +29,8 @@ export default function ModalCancel({ open, setOpen, order, refetch }) {
     <ConfirmationModal
       open={open}
       setOpen={setOpen}
-      title="Konfirmasi pembatalan pesanan"
-      message="Apakah anda yakin untuk membatalkan pesanan ini"
+      title={title}
+      message={message}
       confirmLabel="Konfirmasi"
       processing={isLoading}
       onConfirm={() => mutate()}

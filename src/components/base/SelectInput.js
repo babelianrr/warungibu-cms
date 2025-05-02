@@ -1,12 +1,13 @@
-import React, {useState} from 'react'
+/* eslint-disable no-unused-vars */
+import React, { useState } from 'react'
 import Selectoption from 'components/base/SelectOption'
-import {classNames} from 'helpers/classNames'
-import {ChevronDownIcon} from '@heroicons/react/outline'
-import {SelectorIcon} from '@heroicons/react/solid'
+import { classNames } from 'helpers/classNames'
+import { ChevronDownIcon } from '@heroicons/react/outline'
+import { SelectorIcon } from '@heroicons/react/solid'
 import InputLabel from 'components/base/InputLabel'
 
 export default function SelectInput({
-  onChange = () => {},
+  onChange = () => { },
   data = [],
   placeholder,
   id,
@@ -20,7 +21,7 @@ export default function SelectInput({
   defaultValue = null,
 }) {
   const activeClasses = `${background} ${border} focus:ring-1 focus:ring-indigo-600 focus:border-indigo-600 cursor-default`
-  const disabledClassess = 'bg-gray-100 ${border} cursor-not-allowed'
+  const disabledClassess = `bg-gray-100 ${border} cursor-not-allowed`
   return (
     <Selectoption
       data={data}
@@ -36,9 +37,8 @@ export default function SelectInput({
               </Selectoption.Label>
             ) : null}
             <Selectoption.Button
-              className={` relative w-full border ${rounded} shadow-sm pl-3 pr-10 py-2 text-left  focus:outline-none sm:text-sm ${
-                disabled ? disabledClassess : activeClasses
-              } ${className}`}
+              className={` relative w-full border ${rounded} shadow-sm pl-3 pr-10 py-2 text-left  focus:outline-none sm:text-sm ${disabled ? disabledClassess : activeClasses
+                } ${className}`}
             >
               <span className={`${selected ? 'text-gray-900' : 'text-gray-500'} text-sm `}>
                 {selected?.value ?? placeholder}
@@ -58,7 +58,7 @@ export default function SelectInput({
         {data.map((data) => (
           <Selectoption.Option
             key={data.id}
-            className={({active}) =>
+            className={({ active }) =>
               classNames(
                 active ? 'text-white bg-dnr-dark-orange' : 'text-gray-900',
                 'cursor-default select-none relative py-2 px-4'
@@ -66,7 +66,7 @@ export default function SelectInput({
             }
             value={data}
           >
-            {({selected, disabled}) => (
+            {({ selected, disabled }) => (
               <div className="flex justify-between">
                 <span
                   className={classNames(

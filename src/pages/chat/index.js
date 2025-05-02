@@ -1,14 +1,16 @@
-import {useState, useEffect, useRef} from 'react'
-import {useMutation} from 'react-query'
-import {collection, onSnapshot, doc, getDocs, query, orderBy} from 'firebase/firestore'
-import {SearchIcon} from '@heroicons/react/solid'
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
+import { useState, useEffect, useRef } from 'react'
+import { useMutation } from 'react-query'
+import { collection, onSnapshot, doc, getDocs, query, orderBy } from 'firebase/firestore'
+import { SearchIcon } from '@heroicons/react/solid'
 import debounce from 'lodash.debounce'
 
 import db from 'API/firebase'
 import serverAuthAPI from 'API/serverAuthAPI'
-import {createChat, readChat} from 'API'
+import { createChat, readChat } from 'API'
 
-import {LoadingPage} from 'components/base'
+import { LoadingPage } from 'components/base'
 
 export default function ChatPage() {
   const [users, setUsers] = useState([])
@@ -17,7 +19,7 @@ export default function ChatPage() {
   const [search, setSearch] = useState('')
   const debounceSearch = debounce((e) => setSearch(e.target.value), 250)
 
-  const {mutate: readChatMutation} = useMutation('read-chat', (userId) => readChat(userId))
+  const { mutate: readChatMutation } = useMutation('read-chat', (userId) => readChat(userId))
 
   useEffect(() => {
     if (search !== '') {
@@ -37,7 +39,7 @@ export default function ChatPage() {
     const unsubscribe = onSnapshot(queryRef, async (snapshot) => {
       let docs = []
       snapshot.forEach((doc) => {
-        docs.push({...doc.data(), id: doc.id})
+        docs.push({ ...doc.data(), id: doc.id })
       })
       const sortedDocs = docs.sort((a, b) => {
         if (a.last_message.seconds < b.last_message.seconds) {
@@ -52,7 +54,7 @@ export default function ChatPage() {
           method: 'GET',
         }).then((data) => {
           if (data.users[0]) {
-            return {...data.users[0], ...doc}
+            return { ...data.users[0], ...doc }
           }
           return false
         })
@@ -126,7 +128,7 @@ export default function ChatPage() {
           </nav>
         </div>
         {/* CHAT */}
-        <div className="border col-span-2 flex justify-between flex-col" style={{height: '94vh'}}>
+        <div className="border col-span-2 flex justify-between flex-col" style={{ height: '94vh' }}>
           <div className="w-full p-4 bg-gray-100">
             <h1>{user?.name}</h1>
           </div>
@@ -137,9 +139,9 @@ export default function ChatPage() {
   )
 }
 
-function ListUsers({data = [], setUser, readChatMutation}) {
+function ListUsers({ data = [], setUser, readChatMutation }) {
   return (
-    <ul role="list" className="relative z-0 divide-y divide-gray-200 overflow-scroll " style={{height: '73vh'}}>
+    <ul className="relative z-0 divide-y divide-gray-200 overflow-scroll " style={{ height: '73vh' }}>
       {data.map((user) => (
         <li
           key={user.id}
@@ -182,10 +184,10 @@ function ListUsers({data = [], setUser, readChatMutation}) {
   )
 }
 
-function ChatContent({data = [], userId}) {
+function ChatContent({ data = [], userId }) {
   const [text, setText] = useState('')
   const chatRef = useRef(null)
-  const {mutate} = useMutation(createChat, {
+  const { mutate } = useMutation(createChat, {
     onSuccess(_) {
       window.scrollTo(0, document.body.scrollHeight)
       setText('')
@@ -213,15 +215,14 @@ function ChatContent({data = [], userId}) {
       </div>
     )
 
-  function ChatItem({chat = {}}) {
+  function ChatItem({ chat = {} }) {
     return (
       <div className="clear-both">
         <div
-          className={`mx-4 my-2 p-2 rounded-lg ${
-            chat.sender_role_status === 'ADMIN'
-              ? 'bg-dnr-dark-turqoise text-white float-right clear-both text-right'
-              : 'bg-gray-700 text-white float-left clear-both text-left'
-          }`}
+          className={`mx-4 my-2 p-2 rounded-lg ${chat.sender_role_status === 'ADMIN'
+            ? 'bg-dnr-dark-turqoise text-white float-right clear-both text-right'
+            : 'bg-gray-700 text-white float-left clear-both text-left'
+            }`}
         >
           {chat.text}
           <p className="text-xs text-white my-2">

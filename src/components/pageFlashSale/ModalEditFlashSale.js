@@ -1,10 +1,11 @@
-import {useState} from 'react'
-import {useMutation} from 'react-query'
+/* eslint-disable no-unused-vars */
+import { useState } from 'react'
+import { useMutation } from 'react-query'
 import ConfirmationModal from 'components/base/ConfirmationModal'
 import serverAuthAPI from 'API/serverAuthAPI'
 import Input from 'components/base/Input'
 
-export default function ModalEditFlashSale({open, setOpen, flashSaleId, status = 'ACTIVE', refetch}) {
+export default function ModalEditFlashSale({ open, setOpen, flashSaleId, status = 'ACTIVE', refetch }) {
   const {
     mutate: activateFlashSale,
     isLoading,
@@ -24,7 +25,7 @@ export default function ModalEditFlashSale({open, setOpen, flashSaleId, status =
     }
   )
 
-  const {mutate: deactivateFlashSale, isLoading: deactivateIsloading} = useMutation(
+  const { mutate: deactivateFlashSale, isLoading: deactivateIsloading } = useMutation(
     'deactivate-flashsale',
     () =>
       serverAuthAPI({
@@ -54,7 +55,7 @@ export default function ModalEditFlashSale({open, setOpen, flashSaleId, status =
     },
   }
 
-  const {title, mutate, processing, message} = table[status]
+  const { title, mutate, processing, message } = table[status]
 
   return (
     <ConfirmationModal

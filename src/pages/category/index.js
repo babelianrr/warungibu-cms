@@ -1,18 +1,19 @@
-import {useHistory} from 'react-router'
-import {useQuery} from 'react-query'
-import {PlusIcon} from '@heroicons/react/outline'
+/* eslint-disable no-unused-vars */
+import { useHistory } from 'react-router'
+import { useQuery } from 'react-query'
+import { PlusIcon } from '@heroicons/react/outline'
 
-import {ReactTable, LoadingTable, ActionRow} from 'components/table'
-import {LoadingPage, ErrorPage} from 'components/base'
+import { ReactTable, LoadingTable, ActionRow } from 'components/table'
+import { LoadingPage, ErrorPage } from 'components/base'
 
-import {fetchCategories} from 'API'
+import { fetchCategories } from 'API'
 import useMemoColumnsTable from 'hooks/useMemoColumnsTable'
-import {formatSentenceCase} from 'helpers/formatter'
+import { formatSentenceCase } from 'helpers/formatter'
 
 export default function CategoryPage() {
   const history = useHistory()
 
-  const {data, isLoading, isError, error} = useQuery('categories', fetchCategories, {
+  const { data, isLoading, isError, error } = useQuery('categories', fetchCategories, {
     select: (categories) => {
       return categories.map((category) => ({
         name: formatSentenceCase(category.name),

@@ -1,13 +1,14 @@
-import {useHistory} from 'react-router'
-import {useQuery} from 'react-query'
-import {PlusIcon} from '@heroicons/react/outline'
+/* eslint-disable no-unused-vars */
+import { useHistory } from 'react-router'
+import { useQuery } from 'react-query'
+import { PlusIcon } from '@heroicons/react/outline'
 
-import {ReactTable, LoadingTable, ActionRow} from 'components/table'
+import { ReactTable, LoadingTable, ActionRow } from 'components/table'
 import { ProductRow, StatusItem } from 'components/pageProduct'
-import {LoadingPage, ErrorPage} from 'components/base'
+import { LoadingPage, ErrorPage } from 'components/base'
 import ModalDelete from 'components/pageOutletType/ModalDelete'
 
-import {fetchOutletTypes} from 'API'
+import { fetchOutletTypes } from 'API'
 import useMemoColumnsTable from 'hooks/useMemoColumnsTable'
 import { AUTH, SUPER_USER } from 'helpers/utils'
 import { authenticatedUser } from 'helpers/isAuthenticated'
@@ -17,20 +18,20 @@ export default function OutletTypePage() {
   const history = useHistory()
   const Users = authenticatedUser()
 
-  const {data, isLoading, isError, error} = useQuery('outlet-types', fetchOutletTypes, {
+  const { data, isLoading, isError, error } = useQuery('outlet-types', fetchOutletTypes, {
     select: (outletTypes) => {
       return outletTypes.map((outletType) => ({
         name: outletType.name,
-        status: 
+        status:
           outletType?.active ?
             <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800`}>
               Active
             </span>
-          :
+            :
             <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800`}>
               InActive
             </span>
-          ,
+        ,
         action: (
           <ActionRow
             editPath={`/outlet_types/${outletType.id}/edit`}
@@ -51,27 +52,27 @@ export default function OutletTypePage() {
   let dataColumns = ['name', 'status', 'action']
   let columns
 
-  if (Users.role_status !== 'SUPER_ADMIN') {
+  if (Users.role_status !== SUPER_USER) {
     dataColumns.splice(1, 1)
   }
 
   columns = useMemoColumnsTable(dataColumns)
-  
+
   if (isError) return <ErrorPage error={error} />
 
   return (
     <>
       <div className="px-8 flex justify-between">
-        <h1 className="text-2xl font-semibold text-gray-900">Client</h1>
-        {Users.role_status === 'SUPER_ADMIN' ? 
-        <button
-          className="mb-4 cursor-pointer border border-wi-blue py-2 px-3 rounded-md flex space-x-1 items-center text-white hover:text-wi-blue bg-wi-blue hover:bg-white transition-colors ease-in-out"
-          onClick={() => history.push('/outlet_types/create')}
-        >
-          <PlusIcon className="h-4 w-4 mr-2" />
-          Client Name
-        </button>
-        : ''
+        <h1 className="text-2xl font-semibold text-gray-900">Client Name</h1>
+        {Users.role_status === SUPER_USER ?
+          <button
+            className="mb-4 cursor-pointer border border-wi-blue py-2 px-3 rounded-md flex space-x-1 items-center text-white hover:text-wi-blue bg-wi-blue hover:bg-white transition-colors ease-in-out"
+            onClick={() => history.push('/outlet_types/create')}
+          >
+            <PlusIcon className="h-4 w-4 mr-2" />
+            Client Name
+          </button>
+          : ''
         }
       </div>
       <div className="py-4 mx-auto">

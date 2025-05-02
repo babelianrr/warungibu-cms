@@ -1,10 +1,11 @@
+/* eslint-disable no-unused-vars */
 /* This example requires Tailwind CSS v2.0+ */
 
 import Modal from './Modal'
 import Button from './Button'
 import ModalDelete from 'components/pageOutletType/ModalDelete'
 
-export default function InfoModal({open, setOpen, title, message}) {
+export default function InfoModal({ open, setOpen, title, message }) {
   return (
     <Modal open={open} setOpen={setOpen}>
       <div className="text-center sm:mt-0 sm:w-full">

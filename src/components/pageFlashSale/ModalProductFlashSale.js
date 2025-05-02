@@ -1,26 +1,28 @@
-import {useState, useEffect} from 'react'
-import {useMutation, useQuery} from 'react-query'
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
+import { useState, useEffect } from 'react'
+import { useMutation, useQuery } from 'react-query'
 import debounce from 'lodash.debounce'
-import {SearchIcon} from '@heroicons/react/outline'
+import { SearchIcon } from '@heroicons/react/outline'
 
 import Input from 'components/base/Input'
-import {Modal} from 'components/base'
-import {LoadingTable} from 'components/table'
+import { Modal } from 'components/base'
+import { LoadingTable } from 'components/table'
 
-import {fetchActiveProducts, addProductFlashSale, removeProductFlashSale} from 'API'
+import { fetchActiveProducts, addProductFlashSale, removeProductFlashSale } from 'API'
 
-function ListItem({action, product, flashSaleId, onSuccess}) {
-  const {mutate: addProduct, isLoading} = useMutation(
+function ListItem({ action, product, flashSaleId, onSuccess }) {
+  const { mutate: addProduct, isLoading } = useMutation(
     'add-product-to-flash-sale',
-    ({flashSaleId, productIds}) => addProductFlashSale(flashSaleId, productIds),
+    ({ flashSaleId, productIds }) => addProductFlashSale(flashSaleId, productIds),
     {
       onSuccess,
     }
   )
 
-  const {mutate: removeProduct, isLoading: isLoadingRemove} = useMutation(
+  const { mutate: removeProduct, isLoading: isLoadingRemove } = useMutation(
     'remove-product-to-flash-sale',
-    ({flashSaleId, productIds}) => removeProductFlashSale(flashSaleId, productIds),
+    ({ flashSaleId, productIds }) => removeProductFlashSale(flashSaleId, productIds),
     {
       onSuccess,
     }
@@ -46,19 +48,17 @@ function ListItem({action, product, flashSaleId, onSuccess}) {
         <div>
           {action === 'remove' ? (
             <button
-              onClick={() => removeProduct({flashSaleId, productIds: [product.id]})}
-              className={`inline-flex text-sm items-center shadow-sm px-2.5 py-1 border border-gray-300 leading-5 font-medium rounded-md text-gray-700 bg-white hover:bg-red-500 hover:text-white ${
-                isLoadingRemove ? 'cursor-not-allowed' : ''
-              }`}
+              onClick={() => removeProduct({ flashSaleId, productIds: [product.id] })}
+              className={`inline-flex text-sm items-center shadow-sm px-2.5 py-1 border border-gray-300 leading-5 font-medium rounded-md text-gray-700 bg-white hover:bg-red-500 hover:text-white ${isLoadingRemove ? 'cursor-not-allowed' : ''
+                }`}
             >
               {isLoadingRemove ? 'Diproses' : 'Hapus'}
             </button>
           ) : action === 'add' ? (
             <button
-              onClick={() => addProduct({flashSaleId, productIds: [product.id]})}
-              className={`inline-flex text-sm items-center shadow-sm px-2.5 py-1 border border-gray-300 leading-5 font-medium rounded-md text-gray-700 bg-white hover:bg-blue-500 hover:text-white ${
-                isLoading ? 'cursor-not-allowed' : ''
-              }`}
+              onClick={() => addProduct({ flashSaleId, productIds: [product.id] })}
+              className={`inline-flex text-sm items-center shadow-sm px-2.5 py-1 border border-gray-300 leading-5 font-medium rounded-md text-gray-700 bg-white hover:bg-blue-500 hover:text-white ${isLoading ? 'cursor-not-allowed' : ''
+                }`}
             >
               {isLoading ? 'Diproses' : 'Tambah'}
             </button>
@@ -75,7 +75,7 @@ function ListItem({action, product, flashSaleId, onSuccess}) {
   )
 }
 
-export default function ModalProductFlashSale({open, setOpen, flashSaleId, flashSale, refetch}) {
+export default function ModalProductFlashSale({ open, setOpen, flashSaleId, flashSale, refetch }) {
   const [search, setSearch] = useState('')
   const [searchExistingProduct, setSearchExistingProduct] = useState('')
   const debounceSearch = debounce((e) => setSearch(e.target.value), 250)
@@ -85,7 +85,7 @@ export default function ModalProductFlashSale({open, setOpen, flashSaleId, flash
     data: productSearch,
     isLoading: isLoadingSearch,
     refetch: refetchSearch,
-  } = useQuery(['search-product-flash-sale', search], () => fetchActiveProducts({page: 1, limit: 3, name: search}), {
+  } = useQuery(['search-product-flash-sale', search], () => fetchActiveProducts({ page: 1, limit: 3, name: search }), {
     enabled: !!search,
   })
 
@@ -148,7 +148,7 @@ export default function ModalProductFlashSale({open, setOpen, flashSaleId, flash
                 </div>
                 <div>
                   <div className="flow-root mt-6">
-                    <ul role="list" className="-my-5 divide-y divide-gray-200">
+                    <ul className="-my-5 divide-y divide-gray-200">
                       {productSearch.products.map((product) => (
                         <ListItem
                           key={product.id}
@@ -186,7 +186,7 @@ export default function ModalProductFlashSale({open, setOpen, flashSaleId, flash
           </div>
           <div>
             <div className="flow-root mt-6">
-              <ul role="list" className="-my-5 divide-y divide-gray-200 h-96 overflow-y-auto ">
+              <ul className="-my-5 divide-y divide-gray-200 h-96 overflow-y-auto ">
                 {flashSale.products.filter(filterProduct).map((product) => (
                   <ListItem
                     key={product.id}

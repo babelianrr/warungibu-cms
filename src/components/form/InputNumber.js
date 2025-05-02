@@ -8,6 +8,7 @@ export default function InputNumber({
   onChange = () => {},
   defaultValue,
   PrefixComponent,
+  note,
   ...rest
 }) {
   const PrefixLabel = ({prefix}) => {
@@ -40,6 +41,9 @@ export default function InputNumber({
           // {...rest}
         />
       </div>
+      {
+        note && <p id="note" className="text-sm text-red-400 mt-1">{note}</p>
+      }
     </div>
   )
 }

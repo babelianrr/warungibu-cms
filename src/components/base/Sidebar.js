@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { NavLink } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
@@ -90,7 +91,7 @@ export default function Sidebar() {
       url: '/flash-sale',
     },
     {
-      name: 'Client',
+      name: 'Client Name',
       Component: ShoppingBagIcon,
       url: '/outlet_types',
     },
@@ -124,11 +125,11 @@ export default function Sidebar() {
     //   Component: CashIcon,
     //   url: '/payment',
     // },
-    // {
-    //   name: 'PPOB',
-    //   Component: CreditCardIcon,
-    //   url: '/ppob',
-    // },
+    {
+      name: 'PPOB',
+      Component: CreditCardIcon,
+      url: '/ppob',
+    },
   ]
   return (
     <div className="flex flex-col">

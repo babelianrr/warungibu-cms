@@ -22,8 +22,8 @@ export default function ModalDelete({id, open, setOpen}) {
     <ConfirmationModal
       open={open}
       setOpen={setOpen}
-      title="Konfirmasi hapus Client"
-      message="Apakah anda yakin untuk menghapus Client ini"
+      title="Konfirmasi hapus Client Name"
+      message="Apakah anda yakin untuk menghapus Client Name ini"
       // type='information'
       confirmLabel="Konfirmasi"
       processing={isLoading}

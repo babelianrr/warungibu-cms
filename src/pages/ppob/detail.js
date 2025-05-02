@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import {useState} from 'react'
 import {useQuery} from 'react-query'
 import {useParams, useHistory} from 'react-router'

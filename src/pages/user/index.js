@@ -14,6 +14,7 @@ import { ErrorPage } from 'components/base'
 import ColoredLabel from 'components/base/ColoredLabel'
 import { ModalConfirmUser } from 'components/pageUser'
 import ModalImportUser from 'components/pageUser/ModalImportUser'
+import { async } from '@firebase/util'
 import { formatCurrency } from 'helpers/formatter'
 import { PlusIcon } from '@heroicons/react/solid'
 import ModalInActivateUser from 'components/pageUser/ModalInActivateUser'
@@ -204,7 +205,7 @@ export default function UserPage() {
                   <option selected>Filter By</option>
                   <option value="customer_id">ID</option>
                   <option value="name">Name</option>
-                  <option value="client">Client</option>
+                  <option value="client">Client Name</option>
                 </select>
 
                 <input

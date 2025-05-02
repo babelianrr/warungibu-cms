@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState } from 'react'
 import { useQuery, useMutation } from 'react-query'
 import debounce from 'lodash.debounce'
@@ -101,8 +102,8 @@ export default function ProductPage() {
                 <div
                   onClick={() => setActiveFilter('')}
                   className={`${activeFilter === ''
-                      ? 'bg-wi-dark-wi border-wi-blue text-white '
-                      : 'bg-white border-wi-blue text-dnr-dark-bicart'
+                    ? 'bg-wi-dark-wi border-wi-blue text-white '
+                    : 'bg-white border-wi-blue text-dnr-dark-bicart'
                     } rounded-md  px-2 py-2 my-auto hover:bg-wi-dark-wi hover:text-white transition-colors ease-in-out cursor-pointer border`}
                 >
                   <span>Semua</span>
@@ -111,8 +112,8 @@ export default function ProductPage() {
                   <div
                     key={index}
                     className={`${activeFilter === status
-                        ? 'bg-wi-dark-wi border-wi-blue text-white '
-                        : 'bg-white border-wi-blue text-wi-blue'
+                      ? 'bg-wi-dark-wi border-wi-blue text-white '
+                      : 'bg-white border-wi-blue text-wi-blue'
                       } rounded-md  px-2 py-2 my-auto hover:bg-wi-dark-wi hover:text-white transition-colors ease-in-out cursor-pointer border`}
                     onClick={() => setActiveFilter(status)}
                   >
@@ -122,7 +123,7 @@ export default function ProductPage() {
               </div>
             </div>
             <div>
-              <h5 className="text-gray-900 mt-8"></h5>
+              {/* <h5 className="text-gray-900 mt-8"></h5> */}
               <Button
                 color="bicart"
                 padding="px-2 py-2"

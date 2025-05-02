@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState, useEffect } from 'react'
 import { Switch, useHistory, Route } from 'react-router-dom'
 import PrivateRoute from './components/route/PrivateRoute'
@@ -7,8 +8,8 @@ import {
   Admin,
   AdminCreate,
   User,
-  UserCreate,
-  UserEdit,
+  UserCreatePage,
+  UserEditPage,
   UserDetail,
   Banner,
   BannerCreatePage,
@@ -69,10 +70,10 @@ function App() {
       {/* <Maintenance /> */}
       <LoginRoute path="/login" />
       <PrivateRoute path="/users/create">
-        <UserCreate />
+        <UserCreatePage />
       </PrivateRoute>
       <PrivateRoute path="/users/edit/:email">
-        <UserEdit />
+        <UserEditPage />
       </PrivateRoute>
       <PrivateRoute path="/users/:email">
         <UserDetail />
@@ -175,7 +176,7 @@ function App() {
       </PrivateRoute>
 
       <PrivateRoute path="/ppob">
-        <Ppob/>
+        <Ppob />
       </PrivateRoute>
 
 

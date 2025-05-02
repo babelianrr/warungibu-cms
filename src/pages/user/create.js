@@ -1,35 +1,36 @@
-import {useState} from 'react'
-import {useMutation, useQuery, useQueryClient} from 'react-query'
-import {useForm} from 'react-hook-form'
-import {useHistory} from 'react-router-dom'
+/* eslint-disable no-unused-vars */
+import { useState } from 'react'
+import { useMutation, useQuery, useQueryClient } from 'react-query'
+import { useForm } from 'react-hook-form'
+import { useHistory } from 'react-router-dom'
 
-import {Input, InputFile, InputSelect} from 'components/form'
+import { Input, InputFile, InputSelect } from 'components/form'
 import LoadingPage from 'components/base/LoadingPage'
 import ErrorPage from 'components/base/ErrorPage'
-import {createOutletType, fetchCreateUser, fetchOutletTypes} from 'API'
+import { createOutletType, fetchCreateUser, fetchOutletTypes } from 'API'
 import { AUTH, SUPER_USER } from 'helpers/utils'
 import NotFoundPage from 'pages/NotFound'
 import ConfirmationModal from 'components/base/ConfirmationModal'
 
-export default function OutletTypeCreatePage() {
+export default function UserCreatePage() {
   const history = useHistory()
   const queryClient = useQueryClient()
 
-  const {register, handleSubmit} = useForm()
+  const { register, handleSubmit } = useForm()
   const [images, setImages] = useState([])
   const [open, setOpen] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
 
-  const {data: clients} = useQuery('clients', fetchOutletTypes, {
+  const { data: clients } = useQuery('clients', fetchOutletTypes, {
     select: (clients) => {
       return clients.map((client) => ({
         value: client.id,
-        label:client.name,
+        label: client.name,
       }))
     },
   })
 
-  const {mutate, isLoading, isError, error} = useMutation(fetchCreateUser, {
+  const { mutate, isLoading, isError, error } = useMutation(fetchCreateUser, {
     onSuccess: (data) => {
       // queryClient.invalidateQueries(['outlet-types'])
       history.push('/users')
@@ -71,13 +72,13 @@ export default function OutletTypeCreatePage() {
                 <Input register={register} label="Email" name={'email'} type={'email'} />
                 <Input register={register} label="Phone" name={'phone_number'} type={'number'} prefix={'+62'} />
                 <Input register={register} label="NIK" name={'ktp'} type={'number'} />
-                <InputSelect register={register} label="Gender" name={'gender'} 
+                <InputSelect register={register} label="Gender" name={'gender'}
                   data={[
-                    {value:'Male', label:'Male'},
-                    {value:'Female', label:'Female'}
-                  ]}/>
-                <InputSelect register={register} label="Client Name" name={'outlet_types_id'} 
-                  data={clients}/>
+                    { value: 'Male', label: 'Male' },
+                    { value: 'Female', label: 'Female' }
+                  ]} />
+                <InputSelect register={register} label="Client Name" name={'outlet_types_id'}
+                  data={clients} />
               </div>
 
               <div className="pt-5">

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useCallback } from 'react'
 import AsyncSelect from 'react-select/async'
 import { fetchProducts } from 'API'

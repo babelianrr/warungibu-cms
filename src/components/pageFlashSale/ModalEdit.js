@@ -1,18 +1,19 @@
-import {useState, useEffect} from 'react'
-import {useMutation} from 'react-query'
-import {format} from 'date-fns'
+/* eslint-disable no-unused-vars */
+import { useState, useEffect } from 'react'
+import { useMutation } from 'react-query'
+import { format } from 'date-fns'
 
 import Input from 'components/base/Input'
-import {Button, Modal} from 'components/base'
+import { Button, Modal } from 'components/base'
 
-import {editFlashSale} from 'API'
+import { editFlashSale } from 'API'
 
-export default function ModalEdit({open, setOpen, refetch, flashSale}) {
+export default function ModalEdit({ open, setOpen, refetch, flashSale }) {
   const [name, setName] = useState(flashSale.notes)
   const [startDate, setStartDate] = useState(format(new Date(flashSale.start_date), 'yyyy-MM-dd'))
   const [endDate, setEndDate] = useState(format(new Date(flashSale.end_date), 'yyyy-MM-dd'))
 
-  const {mutate, isLoading, error, isError} = useMutation(
+  const { mutate, isLoading, error, isError } = useMutation(
     'edit-flash-sale',
     (payload) => editFlashSale(flashSale.id, payload),
     {

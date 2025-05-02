@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
 import debounce from 'lodash.debounce'
@@ -42,6 +43,7 @@ import { AUTH, SUPER_USER } from 'helpers/utils'
 const orderType = {
   ORDERED: 'Menunggu Pembayaran',
   PROCESSED: 'Diproses',
+  PENDING: 'Diproses',
   ONGOING: 'Dikirim',
   DELIVERED: 'Sampai Tujuan',
   COMPLETED: 'Selesai',
@@ -79,7 +81,7 @@ export default function OrderPage() {
     return orderType[order.status]
   }
 
-  const {isLoading: isLoadingClient, isError: isErrorClient, error: errorClient} = useQuery(
+  const { isLoading: isLoadingClient, isError: isErrorClient, error: errorClient } = useQuery(
     ['outlet-types'], () => fetchOutletTypes(),
     {
       onSuccess: res => {
@@ -124,7 +126,7 @@ export default function OrderPage() {
     }
   )
 
-  const { mutate: mutateExport, isLoading: isLoadingExport  } = useMutation(
+  const { mutate: mutateExport, isLoading: isLoadingExport } = useMutation(
     () => exportOrders({ page, limit: 15, status: statusPesanan, search, client, start_date, end_date }), {
     onSuccess: async (res) => {
       const url = window.URL.createObjectURL(new Blob([res]));
@@ -132,7 +134,7 @@ export default function OrderPage() {
       link.href = url;
       // Warung Ibu_26/12/22-25/01/23_Order List
 
-      link.setAttribute('download', `${client ? client+'_' : ''}${start_date && end_date ? start_date+'_'+end_date+'_' :(start_date ? start_date+'_' : (end_date && end_date+'_' ) )}Order List.xlsx`);
+      link.setAttribute('download', `${client ? client + '_' : ''}${start_date && end_date ? start_date + '_' + end_date + '_' : (start_date ? start_date + '_' : (end_date && end_date + '_'))}Order List.xlsx`);
       document.body.appendChild(link);
       link.click();
 
@@ -334,15 +336,15 @@ export default function OrderPage() {
             <select
               onChange={(e) => setClient(e.target.value)}
               className="focus:ring-dnr-dark-blue focus:border-dnr-dark-blue block pr-10 sm:text-sm text-gray-400 rounded-md py-2 px-4 bg-gray-100 border-gray-100 focus:bg-white"
-              aria-label="Default select example" value={client}>                    
+              aria-label="Default select example" value={client}>
               <option selected value={''}>Company</option>
-              {!isLoadingClient || !company === undefined ? 
+              {!isLoadingClient || !company === undefined ?
                 company?.map((v, k) => {
-                  return(
+                  return (
                     <option value={v.name} key={k}>{v.name}</option>
                   )
                 })
-                :''
+                : ''
               }
             </select>
           </div>

@@ -13,7 +13,6 @@ export const login = createAsyncThunk('/auth/login', async (payload, {rejectWith
 
     return data
   } catch (err) {
-    console.log(err, 'internal server error')
     return rejectWithValue(err.response.data)
   }
 })

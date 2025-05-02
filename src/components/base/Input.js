@@ -1,5 +1,6 @@
-import {useEffect} from 'react'
-import {ExclamationCircleIcon} from '@heroicons/react/solid'
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect } from 'react'
+import { ExclamationCircleIcon } from '@heroicons/react/solid'
 import useInput from 'hooks/useInput'
 import InputLabel from './InputLabel'
 
@@ -9,7 +10,7 @@ export default function Input({
   type = 'text',
   error,
   placeholder,
-  onChange = () => {},
+  onChange = () => { },
   prefix,
   disabled,
   className,
@@ -21,7 +22,7 @@ export default function Input({
   border = 'border-gray-300',
   boldLabel = false,
   validation = {},
-  isError = () => {},
+  isError = () => { },
   ...rest
 }) {
   const errorClasses = 'border border-red-300 text-red-900 placeholder-red-300 focus:ring-red-500 focus:border-red-500'
@@ -67,9 +68,8 @@ export default function Input({
           name={id}
           id={id}
           value={value}
-          className={`block w-full focus:outline-none sm:text-sm ${errorValue || error ? errorClasses : ''} ${
-            prefix || PrefixComponent ? withPrefixClasses : withoutPrefixClasses
-          } ${disabled ? disabledClass : baseClassess} ${className}`}
+          className={`block w-full focus:outline-none sm:text-sm ${errorValue || error ? errorClasses : ''} ${prefix || PrefixComponent ? withPrefixClasses : withoutPrefixClasses
+            } ${disabled ? disabledClass : baseClassess} ${className}`}
           placeholder={placeholder}
           onChange={handleOnChange}
           disabled={disabled}

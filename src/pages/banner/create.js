@@ -1,22 +1,23 @@
-import {useState} from 'react'
-import {useMutation, useQueryClient} from 'react-query'
-import {useForm} from 'react-hook-form'
-import {useHistory} from 'react-router-dom'
+/* eslint-disable no-unused-vars */
+import { useState } from 'react'
+import { useMutation, useQueryClient } from 'react-query'
+import { useForm } from 'react-hook-form'
+import { useHistory } from 'react-router-dom'
 
-import {Input, InputFile} from 'components/form'
+import { Input, InputFile } from 'components/form'
 import LoadingPage from 'components/base/LoadingPage'
 import ErrorPage from 'components/base/ErrorPage'
 
-import {createBanner} from 'API'
+import { createBanner } from 'API'
 
 export default function BannerCreatePage() {
   const history = useHistory()
   const queryClient = useQueryClient()
 
-  const {handleSubmit} = useForm()
+  const { handleSubmit } = useForm()
   const [images, setImages] = useState([])
 
-  const {mutate, isLoading, isError, error} = useMutation(createBanner, {
+  const { mutate, isLoading, isError, error } = useMutation(createBanner, {
     onSuccess: (data) => {
       queryClient.invalidateQueries(['banner'])
       history.push('/banners')

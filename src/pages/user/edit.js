@@ -1,37 +1,38 @@
-import {useState} from 'react'
-import {useMutation, useQuery, useQueryClient} from 'react-query'
-import {useForm} from 'react-hook-form'
-import {useHistory, useParams} from 'react-router-dom'
+/* eslint-disable no-unused-vars */
+import { useState } from 'react'
+import { useMutation, useQuery, useQueryClient } from 'react-query'
+import { useForm } from 'react-hook-form'
+import { useHistory, useParams } from 'react-router-dom'
 
-import {Input, InputFile, InputSelect} from 'components/form'
+import { Input, InputFile, InputSelect } from 'components/form'
 import LoadingPage from 'components/base/LoadingPage'
 import ErrorPage from 'components/base/ErrorPage'
-import {createOutletType, fetchCreateUser, fetchDetailUser, fetchEditUser, fetchOutletTypes} from 'API'
+import { createOutletType, fetchCreateUser, fetchDetailUser, fetchEditUser, fetchOutletTypes } from 'API'
 import { AUTH, SUPER_USER } from 'helpers/utils'
 import NotFoundPage from 'pages/NotFound'
 
-export default function OutletTypeCreatePage() {
+export default function UserEditPage() {
   const history = useHistory()
   const queryClient = useQueryClient()
 
-  const {register, handleSubmit} = useForm()
+  const { register, handleSubmit } = useForm()
   const [images, setImages] = useState([])
 
-  const {email} = useParams()
+  const { email } = useParams()
 
-  const {data: user, isLoading:isLoadingGet, isError:isErrorGet, error:errorGet, refetch} = useQuery(['product', email], () => fetchDetailUser(email))
+  const { data: user, isLoading: isLoadingGet, isError: isErrorGet, error: errorGet, refetch } = useQuery(['product', email], () => fetchDetailUser(email))
 
 
-  const {data: clients} = useQuery('clients', fetchOutletTypes, {
+  const { data: clients } = useQuery('clients', fetchOutletTypes, {
     select: (clients) => {
       return clients.map((client) => ({
         value: client.id,
-        label:client.name,
+        label: client.name,
       }))
     },
   })
 
-  const {mutate, isLoading, isError, error} = useMutation((payload) => fetchEditUser(user.id, payload), {
+  const { mutate, isLoading, isError, error } = useMutation((payload) => fetchEditUser(user.id, payload), {
     onSuccess: (data) => {
       // queryClient.invalidateQueries(['outlet-types'])
       history.push('/users')
@@ -39,7 +40,6 @@ export default function OutletTypeCreatePage() {
   })
 
   const onSubmit = (data) => {
-    console.log('data.name :', data.name)
     mutate({
       name: data.name,
       email: data.email,
@@ -71,13 +71,13 @@ export default function OutletTypeCreatePage() {
                 <Input register={register} defaultValue={user?.email} label="Email" name={'email'} type={'email'} />
                 <Input register={register} defaultValue={user?.phone_number.slice(3)} label="Phone" name={'phone_number'} type={'number'} prefix={'+62'} />
                 <Input register={register} defaultValue={user?.ktp} label="NIK" name={'ktp'} type={'number'} />
-                <InputSelect register={register} defaultValue={user?.gender} label="Gender" name={'gender'} 
+                <InputSelect register={register} defaultValue={user?.gender} label="Gender" name={'gender'}
                   data={[
-                    {value:'Male', label:'Male'},
-                    {value:'Female', label:'Female'}
-                  ]}/>
-                <InputSelect register={register} defaultValue={user?.outlet_types_id?.id} label="Client Name" name={'outlet_types_id'} 
-                  data={clients}/>
+                    { value: 'Male', label: 'Male' },
+                    { value: 'Female', label: 'Female' }
+                  ]} />
+                <InputSelect register={register} defaultValue={user?.outlet_types_id?.id} label="Client Name" name={'outlet_types_id'}
+                  data={clients} />
               </div>
 
               <div className="pt-5">
