@@ -51,7 +51,7 @@ export default function OutletTypePage() {
   let dataColumns = ['name', 'status', 'action']
   let columns
 
-  if (Users.role_status !== SUPER_USER) {
+  if (Users.role_status !== 'SUPER_ADMIN') {
     dataColumns.splice(1, 1)
   }
 
@@ -62,8 +62,8 @@ export default function OutletTypePage() {
   return (
     <>
       <div className="px-8 flex justify-between">
-        <h1 className="text-2xl font-semibold text-gray-900">Client Name</h1>
-        {Users.role_status === SUPER_USER ? 
+        <h1 className="text-2xl font-semibold text-gray-900">Client</h1>
+        {Users.role_status === 'SUPER_ADMIN' ? 
         <button
           className="mb-4 cursor-pointer border border-wi-blue py-2 px-3 rounded-md flex space-x-1 items-center text-white hover:text-wi-blue bg-wi-blue hover:bg-white transition-colors ease-in-out"
           onClick={() => history.push('/outlet_types/create')}

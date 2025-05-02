@@ -54,7 +54,7 @@ export default function OutletTypeEditPage() {
   return (
     <>
       <div className="max-w-7xl px-4 sm:px-6 md:px-8">
-        <h1 className="text-2xl font-semibold text-gray-900">Edit Client Name</h1>
+        <h1 className="text-2xl font-semibold text-gray-900">Edit Client</h1>
       </div>
       <div className="py-4 mx-auto">
         <div className="-my-2 overflow-x-auto py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">

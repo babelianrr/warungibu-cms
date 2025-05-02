@@ -90,7 +90,7 @@ export default function Sidebar() {
       url: '/flash-sale',
     },
     {
-      name: 'Client Name',
+      name: 'Client',
       Component: ShoppingBagIcon,
       url: '/outlet_types',
     },
